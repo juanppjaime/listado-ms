@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - HungryHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ff6f61;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ff6f61;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+        .cart-item img {
+            max-width: 100px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .item-info {
+            flex-grow: 1;
+        }
+        .item-info h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .price {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .total {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            color: #333;
+        }
+        .confirm-button {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .cart-item img {
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        total=0;
+    </script>
+    <div class="header">
+        <h1>Carrito de Compras - HungryHub</h1>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Resumen del Pedido</h2>
+        
+        <h5>{{mensaje}}</h5>
+        {% for pedido in pedidos%}
+        <div class="cart-item">
+            <img src={{pedido.imagen}} alt="Imagen del Plato">
+            <div class="item-info">
+                <h3>{{pedido.nombre}}</h3>
+                <p class="price">${{pedido.precio}}</p>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <!-- 
+<script>
+   {% for pedido in pedidos %}
+      total += parseInt("{{ pedido.precio }}");
+   {% endfor %}
+</script>
+-->
+
+
+        <div class="total">
+            Total: {{ total }}
+        </div>
+        <form method="POST">
+            <button type="submit" class="confirm-button">Confirmar Pedido</button>
+        </form>
+        <button class="confirm-button" onClick="window.location.href='/platos'" style="text-align:center;">
+            Devolverse al pedido
+        </button>
+    </div>
+</body>
+</html>

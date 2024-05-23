@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HungryHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ff6f61;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ff6f61;
+        }
+        .dish, .drink {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+        .dish img, .drink img {
+            max-width: 150px;
+            border-radius: 8px;
+        }
+        .dish-info, .drink-info {
+            flex-grow: 1;
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+        .dish-info h3, .drink-info h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .price {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .add-to-cart {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .cart-button {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Cocina de HungryHub</h1>
+    </div>
+    <div class="container">
+        <h2 style="text-align: center;">¡Bienvenido a la cocina de HungryHub!</h2>
+        <h2 class="section-title">{{mensaje}}</h2>
+        {% if pedidos %}
+            <div class="dish">
+                <ul>
+                    {% for plato in pedidos %}
+                        <li><strong>{{ plato.nombre }}</strong></li>
+                    {% endfor %}
+                </ul>
+                <form method="POST">
+                    <button class="add-to-cart"> Completar</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
